@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repas de l'utilisateur</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+</head>
+
+<body>
+    <h1>Repas de l'utilisateur :</h1>
+
+    <ul id="listeRepas">
+        {% for repas_info in repas_info %}
+        <li>
+            <h2>{{ repas_info.repas.nom }}</h2>
+            <ul>
+                {% for aliment in repas_info.aliments %}
+                <li>{{ aliment.nom }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

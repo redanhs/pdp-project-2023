@@ -1,0 +1,33 @@
+header{
+    transition: 0.6s ease;
+    padding: 0 4%;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.Navigation{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Navigation p{
+    color: black;
+    margin-right: 20px;
+}
+
+.Navigation p:hover{
+    color: grey;
+    cursor: pointer;
+}
+
+.scroll-down {
+    /* Ajoutez vos styles ici */
+    background-color: lightgray;
+    transition: 0.6s ease;
+}

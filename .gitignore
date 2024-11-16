@@ -1,0 +1,5 @@
+#GITIGNORE
+# ignore ALL files in venv
+venv/
+#ignore basedonnee.db
+basedonnee.db

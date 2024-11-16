@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier des repas</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css' rel='stylesheet' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js'></script>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <script src="/static/script/header.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var repas = JSON.parse('{{ repas_utilisateur | tojson | safe }}');
+            var events = [];
+            repas.forEach(function(repas) {
+                events.push({
+                    title: repas.nom,
+                    start: repas.date,
+                });
+            });
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: events
+            });
+            calendar.render();
+        });
+    </script>
+</head>
+<body>
+    <h1>Calendrier des repas</h1>
+    <div id='calendar'></div>
+</body>
+</html>

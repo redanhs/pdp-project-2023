@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sélection d'aliments</title>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/resultat.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="/static/script/header.js"></script>
+    <script src="/static/script/resultat.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Composition du repas :</h1>
+    <div id="search-container">
+        <select id="typesAliments" onchange="filtrerAlimentsParType()">
+            <option value="" selected>Choisissez un type d’aliment</option>
+            <option value="Tous">Tous</option>
+            {% for type_aliment in types_aliments %}
+            <option value="{{ type_aliment.nom }}">{{ type_aliment.nom }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" id="inputAliment" placeholder="Tapez pour rechercher..." onchange="afficherDetails()">
+        <datalist id="datalistAliments"></datalist>
+        <input type="number" placeholder="Quantité (g ou ml)" min="0" id="quantite">
+        <button class="add-to-meal-btn" onclick="ajouterAuRepas()">🔍</button>
+    </div>
+    <div id="detailsAliment"></div>
+    <br>
+    <div id="date">
+        <label for="repasConsomme">Repas déjà consommé :</label>
+        <input type="checkbox" id="repasConsomme" name="repasConsomme" onchange="toggleDateSelector()" checked>
+        <span id="dateSelectorWrapper" style="display: none;">
+            <label for="dateConsommation">Date de futur consommation :</label>
+            <input type="date" id="dateConsommation" name="dateConsommation">
+        </span>
+        <button class="enregistrer_repas_btn" id="enregistrer_repas_btn" onclick="sauvegarderRepas()">Enregistrer mon repas</button>
+    </div>
+
+    <div id="repas"></div>
+    <script>
+        function toggleDateSelector() {
+            var dateSelectorWrapper = document.getElementById("dateSelectorWrapper");
+            var repasConsommeCheckbox = document.getElementById("repasConsomme");
+            if (repasConsommeCheckbox.checked) {
+                dateSelectorWrapper.style.display = "none";
+            } else {
+                dateSelectorWrapper.style.display = "inline-block";
+            }
+        }
+    </script>
+</body>
+
+</html>

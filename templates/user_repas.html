@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de repas :</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <script src="/static/script/header.js"></script>
+    <script src="/static/script/editer_repas.js"></script>
+</head>
+
+<body>
+    <h1>Utilisateurs :</h1>
+
+    <select id="selectUtilisateur" onchange="afficherRepas()">
+        <option value="">Sélectionner un utilisateur</option>
+        {% for utilisateur in utilisateurs %}
+            <option value="{{ utilisateur.id }}">{{ utilisateur.nom }}</option>
+        {% endfor %}
+    </select>
+
+    <ul id="listeRepas">
+    </ul>
+
+    <script>
+        function afficherRepas() {
+            var utilisateurId = document.getElementById("selectUtilisateur").value;
+            if (utilisateurId) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', '/user_repas/' + utilisateurId, true);
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        document.getElementById("listeRepas").innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.send();
+            } else {
+                document.getElementById("listeRepas").innerHTML = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

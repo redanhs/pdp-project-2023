@@ -1,0 +1,14 @@
+#myRadarChart {
+    width: 50%;
+    height: 50%;
+    max-width: 400px;
+    max-height: 400px;
+}
+
+#repas {
+    display: flex;
+    justify-content: flex-start;
+}
+#repas1, #repas2 {
+    margin-right: 50px;
+}

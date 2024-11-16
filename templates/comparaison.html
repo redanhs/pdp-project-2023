@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparaison de repas</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/canvas.css">
+
+    <script src="/static/script/header.js"></script>
+</head>
+
+<body>
+    <h1>Comparaison de repas</h1>
+    <label for="nutrientType">Type de Nutriments :</label>
+    <select id="nutrientType">
+        <option value="macronutriments">Macronutriments</option>
+        <option value="micronutriments">Micronutriments</option>
+        <option value="score_EF">Score environnementale</option>
+
+    </select>
+    <form id="comparisonForm">
+        <label for="repas1">Repas 1 :</label>
+        <select id="repas1" name="repas1">
+            {% for repas in repasComplets %}
+            <option value="{{ repas.nom }}">{{ repas.nom }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="repas2">Repas 2 :</label>
+        <select id="repas2" name="repas2">
+            {% for repas in repasComplets %}
+            <option value="{{ repas.nom }}">{{ repas.nom }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Comparer</button>
+    </form>
+
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div id="details">
+    </div>
+
+    <script src="/static/script/comparaison.js"></script>
+</body>
+
+</html>

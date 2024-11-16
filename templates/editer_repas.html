@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste de repas :</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <script src="/static/script/header.js"></script>
+    <script src="/static/script/editer_repas.js"></script>
+
+</head>
+
+<body>
+    <h1>Modification des repas pas encore consommés :</h1>
+    <button id="supprimerTousRepas" onclick="confirmerSuppression()">Supprimer tous les repas</button>
+
+    <ul id="listeRepas">
+        {% for repas_info in repas_info %}
+        <li>
+            <h2>{{ repas_info.repas.nom }}</h2>
+            <ul>
+                {% for aliment in repas_info.aliments %}
+                <li>{{ aliment.nom }} <a href="/supprimer_aliment/{{ repas_info.repas.nom }}/{{ aliment.id }}">Supprimer</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
